@@ -5,6 +5,7 @@ import Root from "./routes/root";
 import Home from "./routes/home";
 import Signup, { loader as signupLoader } from "./routes/signup";
 import Signin, { loader as signinLoader } from "./routes/signin";
+import Todo, { loader as todoLoader } from "./routes/todo";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
         path: "/signin",
         element: <Signin />,
         loader: signinLoader,
+      },
+      {
+        path: "/todo",
+        element: <Todo />,
+        loader: todoLoader,
       },
     ],
   },

@@ -16,6 +16,11 @@ const Home = () => {
             로그인하기
           </Link>
         </li>
+        <li>
+          <Link className="btn w-full" to="todo">
+            TODO 작성하기
+          </Link>
+        </li>
       </ul>
     </main>
   );
