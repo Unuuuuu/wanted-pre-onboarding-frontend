@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import { redirect, useLoaderData } from "react-router";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import Title from "../components/Title";
+import TodoAdder from "../components/TodoAdder";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
 
 export interface TodoData {
@@ -42,10 +43,15 @@ const Todo = () => {
     useLoaderData() as TodoData[]
   );
 
+  const handleTodoAdderSubmit = (data: TodoData) => {
+    setTodoDatas((prev) => [...prev, data]);
+  };
+
   return (
     <main className="py-8">
       <Title text="TODO" />
-      <ul>
+      <TodoAdder onSubmit={handleTodoAdderSubmit} />
+      <ul className="mt-4">
         {todoDatas.map((todoData) => (
           <li className="form-control" key={todoData.id}>
             <label className="label cursor-pointer">
