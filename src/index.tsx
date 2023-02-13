@@ -8,6 +8,7 @@ import Signin, { loader as signinLoader } from "./routes/signin";
 import Todo, { loader as todoLoader } from "./routes/todo";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
+import AccessTokenProvider from "./context";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    <Toaster />
+    <AccessTokenProvider>
+      <RouterProvider router={router} />
+    </AccessTokenProvider>
+    <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
   </React.StrictMode>
 );

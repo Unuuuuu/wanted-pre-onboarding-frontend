@@ -1,9 +1,9 @@
 import { AxiosError } from "axios";
 import clsx from "clsx";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
-import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
+import { useAccessToken } from "../context";
 import { TodoData } from "../routes/todo";
 
 interface TodoItemProps {
@@ -20,10 +20,7 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const previousTodoRef = useRef(todo);
 
-  const accessToken = useMemo(
-    () => localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY),
-    []
-  );
+  const { accessToken } = useAccessToken();
 
   const handleCheckboxChange: React.ChangeEventHandler<
     HTMLInputElement

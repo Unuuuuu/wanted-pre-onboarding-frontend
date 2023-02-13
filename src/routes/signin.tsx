@@ -6,6 +6,7 @@ import Title from "../components/Title";
 import AccountForm, { Account } from "../components/AccountForm";
 import { toast } from "react-hot-toast";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
+import { useAccessToken } from "../context";
 
 export async function loader() {
   const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
@@ -19,15 +20,13 @@ export async function loader() {
 
 const Signin = () => {
   const navigate = useNavigate();
+  const { actions } = useAccessToken();
 
   const onSubmit: SubmitHandler<Account> = async (data) => {
     await axoisInstance
       .post<{ access_token: string }>("/auth/signin", data)
       .then((res) => {
-        localStorage.setItem(
-          LOCAL_STORAGE_ACCESS_TOKEN_KEY,
-          res.data.access_token
-        );
+        actions.update(res.data.access_token);
         toast("로그인이 완료되었습니다.");
         navigate("/todo");
       })

@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
-import React, { useMemo } from "react";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
-import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
+import { useAccessToken } from "../context";
 import { TodoData } from "../routes/todo";
 
 const schema = z.object({
@@ -29,10 +29,7 @@ const TodoAdder: React.FC<TodoAdderProps> = (props) => {
     resolver: zodResolver(schema),
   });
 
-  const accessToken = useMemo(
-    () => localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY),
-    []
-  );
+  const { accessToken } = useAccessToken();
 
   const onSubmit: SubmitHandler<Schema> = async (data) => {
     await axoisInstance
