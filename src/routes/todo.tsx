@@ -5,6 +5,7 @@ import { redirect, useLoaderData } from "react-router";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import Title from "../components/Title";
 import TodoAdder from "../components/TodoAdder";
+import TodoItem from "../components/TodoItem";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
 
 export interface TodoData {
@@ -53,16 +54,7 @@ const Todo = () => {
       <TodoAdder onSubmit={handleTodoAdderSubmit} />
       <ul className="mt-4">
         {todoDatas.map((todoData) => (
-          <li className="form-control" key={todoData.id}>
-            <label className="label cursor-pointer">
-              <span className="label-text">{todoData.todo}</span>
-              <input
-                type="checkbox"
-                className="checkbox"
-                defaultChecked={todoData.isCompleted}
-              />
-            </label>
-          </li>
+          <TodoItem todoData={todoData} key={todoData.id} />
         ))}
       </ul>
     </main>
