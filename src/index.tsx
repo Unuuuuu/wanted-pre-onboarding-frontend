@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import Root from "./routes/root";
 import Home from "./routes/home";
 import Signup, { loader as signupLoader } from "./routes/signup";
@@ -32,6 +36,10 @@ const router = createBrowserRouter([
         path: "/todo",
         element: <Todo />,
         loader: todoLoader,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
       },
     ],
   },
