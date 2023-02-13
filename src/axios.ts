@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export interface AxiosResponseData {
+export interface AxiosErrorResponseData {
   error: string;
   message: string;
   statusCode: number;

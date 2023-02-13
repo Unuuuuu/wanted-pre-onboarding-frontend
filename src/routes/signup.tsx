@@ -1,5 +1,5 @@
 import { SubmitHandler } from "react-hook-form";
-import axoisInstance, { AxiosResponseData } from "../axios";
+import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import { AxiosError } from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Title from "../components/Title";
@@ -10,18 +10,15 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Account> = async (data) => {
-    try {
-      await axoisInstance.post("/auth/signup", data);
-    } catch (error) {
-      toast(
-        (error as AxiosError<AxiosResponseData>).response?.data.message ??
-          "Something went wrong!"
-      );
-      return;
-    }
-
-    toast("회원가입이 완료되었습니다.");
-    navigate("/signin");
+    await axoisInstance
+      .post("/auth/signup", data)
+      .then(() => {
+        toast("회원가입이 완료되었습니다.");
+        navigate("/signin");
+      })
+      .catch((error: AxiosError<AxiosErrorResponseData>) => {
+        toast(error.response?.data.message ?? "Something went wrong!");
+      });
   };
 
   return (
