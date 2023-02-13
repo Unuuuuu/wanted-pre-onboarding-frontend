@@ -48,13 +48,21 @@ const Todo = () => {
     setTodoDatas((prev) => [...prev, data]);
   };
 
+  const handleTodoItemDelete = (id: number) => {
+    setTodoDatas((prev) => prev.filter((value) => value.id !== id));
+  };
+
   return (
     <main className="py-8">
       <Title text="TODO" />
       <TodoAdder onSubmit={handleTodoAdderSubmit} />
-      <ul className="mt-4">
+      <ul className="mt-4 space-y-2">
         {todoDatas.map((todoData) => (
-          <TodoItem todoData={todoData} key={todoData.id} />
+          <TodoItem
+            key={todoData.id}
+            todoData={todoData}
+            onDelete={handleTodoItemDelete}
+          />
         ))}
       </ul>
     </main>
