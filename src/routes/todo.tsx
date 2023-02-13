@@ -56,15 +56,19 @@ const Todo = () => {
     <main className="py-8">
       <Title text="TODO" />
       <TodoAdder onSubmit={handleTodoAdderSubmit} />
-      <ul className="mt-4 space-y-2">
-        {todoDatas.map((todoData) => (
-          <TodoItem
-            key={todoData.id}
-            todoData={todoData}
-            onDelete={handleTodoItemDelete}
-          />
-        ))}
-      </ul>
+      {todoDatas.length === 0 ? (
+        <p className="mt-4 text-center opacity-50">작성된 TODO가 없습니다.</p>
+      ) : (
+        <ul className="mt-4 space-y-2">
+          {todoDatas.map((todoData) => (
+            <TodoItem
+              key={todoData.id}
+              todoData={todoData}
+              onDelete={handleTodoItemDelete}
+            />
+          ))}
+        </ul>
+      )}
     </main>
   );
 };
