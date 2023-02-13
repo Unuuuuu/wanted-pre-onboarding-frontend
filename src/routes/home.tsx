@@ -40,7 +40,7 @@ const Home = () => {
             className="btn btn-error w-full"
             onClick={handleClearButtonClick}
           >
-            로컬 스토리지에서 액세스 토큰 제거하기
+            로컬 스토리지에서 액세스 토큰 제거
           </button>
         </li>
       </ul>

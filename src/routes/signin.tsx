@@ -37,7 +37,7 @@ const Signin = () => {
 
   return (
     <main className="py-8">
-      <Title text="로그인하기" />
+      <Title text="로그인" />
       <AccountForm onSubmit={onSubmit} buttonText="로그인" />
       <p className="mt-4 text-center">
         계정이 없으신가요?{" "}

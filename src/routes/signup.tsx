@@ -34,7 +34,7 @@ const Signup = () => {
 
   return (
     <main className="py-8">
-      <Title text="회원가입하기" />
+      <Title text="회원가입" />
       <AccountForm onSubmit={onSubmit} buttonText="회원가입" />
       <p className="mt-4 text-center">
         이미 계정이 있으신가요?{" "}
