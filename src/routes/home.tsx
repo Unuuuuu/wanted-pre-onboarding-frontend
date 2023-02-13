@@ -1,11 +1,18 @@
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Title from "../components/Title";
 import { useAccessToken } from "../context";
 
 const Home = () => {
-  const { actions } = useAccessToken();
+  const { accessToken, actions } = useAccessToken();
 
   const handleClearButtonClick = () => {
+    if (accessToken === null) {
+      toast("토큰이 저장되어 있지 않습니다.");
+      return;
+    }
+
+    toast("토큰을 제거했습니다.");
     actions.delete();
   };
 
@@ -33,7 +40,7 @@ const Home = () => {
             className="btn btn-error w-full"
             onClick={handleClearButtonClick}
           >
-            Clear Local Storage
+            로컬 스토리지에서 액세스 토큰 제거하기
           </button>
         </li>
       </ul>
