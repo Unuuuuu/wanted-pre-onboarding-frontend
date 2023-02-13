@@ -5,6 +5,7 @@ import axoisInstance, { AxiosResponseData } from "../axios";
 import { useState } from "react";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import Title from "../components/Title";
 
 const accountSchema = z.object({
   email: z.string().email("이메일 형식이 올바르지 않습니다."),
@@ -41,7 +42,7 @@ const Signup = () => {
 
   return (
     <main className="py-8">
-      <h1 className="text-4xl text-center mb-8">회원가입하기</h1>
+      <Title text="회원가입하기" />
       {axiosErrorMessage && (
         <div className="alert alert-error justify-center mb-4">
           <span>{axiosErrorMessage}</span>

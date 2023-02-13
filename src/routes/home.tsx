@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import Title from "../components/Title";
 
 const Home = () => {
   return (
     <main className="py-8">
-      <h1 className="text-4xl text-center mb-8">Home</h1>
+      <Title text="Home" />
       <ul className="flex flex-col gap-4">
         <li>
           <Link className="btn w-full" to="signup">
