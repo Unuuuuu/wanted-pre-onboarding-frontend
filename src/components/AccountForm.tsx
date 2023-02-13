@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import clsx from "clsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -66,9 +67,11 @@ const AccountForm: React.FC<AccountFormProps> = (props) => {
       </div>
       <button
         data-testid="signup-button"
-        className={`btn w-full mt-4 ${isError && "btn-disabled"} ${
+        className={clsx(
+          "btn w-full mt-4",
+          isError && "btn-disabled",
           isSubmitting && "loading"
-        }`}
+        )}
         disabled={isError}
       >
         {buttonText}
