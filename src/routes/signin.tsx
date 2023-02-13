@@ -1,10 +1,21 @@
 import { SubmitHandler } from "react-hook-form";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import { AxiosError } from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import Title from "../components/Title";
 import AccountForm, { Account } from "../components/AccountForm";
 import { toast } from "react-hot-toast";
+import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
+
+export async function loader() {
+  const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+  if (accessToken !== null) {
+    toast("이미 로그인되어 있습니다.");
+    return redirect("/todo");
+  }
+
+  return null;
+}
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -13,7 +24,10 @@ const Signin = () => {
     await axoisInstance
       .post<{ access_token: string }>("/auth/signin", data)
       .then((res) => {
-        localStorage.setItem("access_token", res.data.access_token);
+        localStorage.setItem(
+          LOCAL_STORAGE_ACCESS_TOKEN_KEY,
+          res.data.access_token
+        );
         toast("로그인이 완료되었습니다.");
         navigate("/todo");
       })

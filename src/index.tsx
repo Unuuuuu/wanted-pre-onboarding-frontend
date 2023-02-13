@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root";
 import Home from "./routes/home";
-import Signup from "./routes/signup";
-import Signin from "./routes/signin";
+import Signup, { loader as signupLoader } from "./routes/signup";
+import Signin, { loader as signinLoader } from "./routes/signin";
 import { Toaster } from "react-hot-toast";
 import "./index.css";
 
@@ -19,10 +19,12 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+        loader: signupLoader,
       },
       {
         path: "/signin",
         element: <Signin />,
+        loader: signinLoader,
       },
     ],
   },
