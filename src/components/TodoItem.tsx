@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import clsx from "clsx";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
@@ -20,10 +20,14 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const previousTodoRef = useRef(todo);
 
+  const accessToken = useMemo(
+    () => localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY),
+    []
+  );
+
   const handleCheckboxChange: React.ChangeEventHandler<
     HTMLInputElement
   > = async (event) => {
-    const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
     const { checked } = event.target;
     setIsCompleted(checked);
     await axoisInstance
@@ -57,7 +61,6 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
   };
 
   const handleDeleteButtonClick = async () => {
-    const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
     await axoisInstance
       .delete(`/todos/${id}`, {
         headers: {
@@ -73,7 +76,6 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
   };
 
   const handleSubmitButtonClick = async () => {
-    const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
     await axoisInstance
       .put<TodoData>(
         `/todos/${id}`,

@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
-import React from "react";
+import React, { useMemo } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
@@ -29,8 +29,12 @@ const TodoAdder: React.FC<TodoAdderProps> = (props) => {
     resolver: zodResolver(schema),
   });
 
+  const accessToken = useMemo(
+    () => localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY),
+    []
+  );
+
   const onSubmit: SubmitHandler<Schema> = async (data) => {
-    const accessToken = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
     await axoisInstance
       .post<TodoData>(
         "/todos",
