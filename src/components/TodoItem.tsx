@@ -112,7 +112,7 @@ const TodoItem: React.FC<TodoItemProps> = (props) => {
         value={todo}
         onChange={handleInputChange}
         className={clsx(
-          "input input-sm focus:outline-none flex-1",
+          "input input-sm focus:outline-none flex-1 w-full",
           isModifyMode && "input-bordered"
         )}
         readOnly={!isModifyMode}
