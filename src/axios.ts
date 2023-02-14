@@ -7,7 +7,7 @@ export interface AxiosErrorResponseData {
 }
 
 const axoisInstance = axios.create({
-  baseURL: "https://pre-onboarding-selection-task.shop/",
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 export default axoisInstance;
