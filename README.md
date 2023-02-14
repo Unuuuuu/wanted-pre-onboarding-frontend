@@ -20,23 +20,22 @@
 ### 공통
 
 - context api를 사용해 access token 상태 관리를 구현
+- form validation 구현
+- promise chaining을 사용한 error handling 구현
 
 ### `/signup`
 
-- react router dom의 loader function을 정의하여 react component가 렌더되기 전에 local storage에 access token이 있다면 `/todo`로 redirect하도록 구현
-- form validation 구현
+- react router dom의 loader function을 정의하여, react component가 렌더되기 전에 local storage에 access token이 있다면 `/todo`로 redirect되도록 구현
 - axios를 사용한 회원가입 http 통신 구현
-- promise chaining을 사용한 error handling 구현
 
 ### `/signin`
 
-- react router dom의 loader function을 정의하여 react component가 렌더되기 전에 local storage에 access token이 있다면 `/todo`로 redirect하도록 구현
-- form validation 구현
+- react router dom의 loader function을 정의하여, react component가 렌더되기 전에 local storage에 access token이 있다면 `/todo`로 redirect되도록 구현
 - axios를 사용한 로그인 http 통신 구현
-- promise chaining을 사용한 error handling 구현
 
 ### `/todo`
 
+- react router dom의 loader function을 정의하여, react component가 렌더되기 전에 local storage에 access token이 없다면 `/signin`으로 redirect되도록 구현
 - todo의 CRUD 구현
 - axios를 사용한 http 통신으로 server state 업데이트 구현
 
