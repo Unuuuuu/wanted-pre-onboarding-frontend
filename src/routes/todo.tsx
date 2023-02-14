@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { redirect, useLoaderData } from "react-router";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import Title from "../components/Title";
-import TodoAdder from "../components/TodoAdder";
+import TodoAdderForm from "../components/TodoAdderForm";
 import TodoItem from "../components/TodoItem";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
 
@@ -55,7 +55,7 @@ const Todo = () => {
   return (
     <main className="py-8">
       <Title text="TODO" />
-      <TodoAdder onSubmit={handleTodoAdderSubmit} />
+      <TodoAdderForm onSubmit={handleTodoAdderSubmit} />
       {todoDatas.length === 0 ? (
         <p className="mt-4 text-center opacity-50">작성된 TODO가 없습니다.</p>
       ) : (

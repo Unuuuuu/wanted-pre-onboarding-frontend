@@ -1,9 +1,8 @@
-import { SubmitHandler } from "react-hook-form";
 import axoisInstance, { AxiosErrorResponseData } from "../axios";
 import { AxiosError } from "axios";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import Title from "../components/Title";
-import AccountForm, { Account } from "../components/AccountForm";
+import AccountForm, { AccountFormValues } from "../components/AccountForm";
 import { toast } from "react-hot-toast";
 import { LOCAL_STORAGE_ACCESS_TOKEN_KEY } from "../constants";
 import { useAccessToken } from "../context";
@@ -22,9 +21,9 @@ const Signin = () => {
   const navigate = useNavigate();
   const { actions } = useAccessToken();
 
-  const onSubmit: SubmitHandler<Account> = async (data) => {
+  const onSubmit = async (formValues: AccountFormValues) => {
     await axoisInstance
-      .post<{ access_token: string }>("/auth/signin", data)
+      .post<{ access_token: string }>("/auth/signin", formValues)
       .then((res) => {
         actions.update(res.data.access_token);
         toast("로그인이 완료되었습니다.");
