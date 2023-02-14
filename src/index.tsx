@@ -53,6 +53,12 @@ root.render(
     <AccessTokenProvider>
       <RouterProvider router={router} />
     </AccessTokenProvider>
-    <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        duration: 2000,
+        className: "!bg-info !text-info-content",
+      }}
+    />
   </React.StrictMode>
 );
